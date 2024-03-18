@@ -10,5 +10,6 @@ public class Claim {
     private ArrayList<String> documents;
     private double claimAmount;
     private ClaimStatus status;
+    private BankingInfo reiveBankingInfo;
 
 }
