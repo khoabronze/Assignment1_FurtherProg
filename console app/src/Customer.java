@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Customer  {
+public abstract class Customer  {
     private String id;
     private String Fullname;
     private InsuranceCard insuranceCard;
@@ -20,4 +20,6 @@ public class Customer  {
         this.insuranceCard = insuranceCard;
         this.claims = claims;
     }
+
+    
 }
