@@ -12,7 +12,7 @@ public class Admin implements ClaimProcessManager {
     }
 
     public Admin(ArrayList<Claim> claims) {
-        this.claims = new ArrayList<>();
+        this.claims = claims;
     }
 
     @Override
@@ -49,6 +49,13 @@ public class Admin implements ClaimProcessManager {
                 case 2:
                     System.out.println("Claim Date is:" + " " + claim.getClaimDate());
 
+                case 3:
+                    System.out.println("The insured person is " + " " + claim.getInsuredPerson());
+                    System.out.println("Enter new insured person:");
+                    String newinsuredPerson = scanner.nextLine();
+                    claim.setInsuredPerson(newinsuredPerson);
+                case 4:
+                    System.out.println("The card number is" +" " + claim.getCardNumber());
                 }
         }
 
