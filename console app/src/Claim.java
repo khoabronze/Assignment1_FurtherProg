@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 public class Claim {
     private String id;
@@ -12,7 +13,38 @@ public class Claim {
     private ClaimStatus status;
     private BankingInfo reiveBankingInfo;
 
+    public Claim() {
+        this.id = generateUniqueId();
+        this.claimDate = new Date();
+        InsuredPerson = "Default";
+        this.cardNumber = "default";
+        this.examDate = new Date();
+        this.documents = new ArrayList<>();
+        this.claimAmount = 0.00;
+        this.status = null;
+        this.reiveBankingInfo = reiveBankingInfo;
+    }
+    public Claim(String id, Date claimDate, String insuredPerson, String cardNumber, Date examDate, ArrayList<String> documents, double claimAmount, ClaimStatus status, BankingInfo reiveBankingInfo) {
+        this.id = id;
+        this.claimDate = claimDate;
+        InsuredPerson = insuredPerson;
+        this.cardNumber = cardNumber;
+        this.examDate = examDate;
+        this.documents = documents;
+        this.claimAmount = claimAmount;
+        this.status = status;
+        this.reiveBankingInfo = reiveBankingInfo;
+    }
 
+    private String generateUniqueId() {
+        StringBuilder sb = new StringBuilder("f-");
+        Random random = new Random();
+        // Generate 10 random digits
+        for (int i = 0; i < 10; i++) {
+            sb.append(random.nextInt(10)); // Append a random digit (0-9)
+        }
+        return sb.toString();
+    }
     public String getId() {
         return id;
     }
