@@ -116,4 +116,20 @@ public class Claim {
     public void setReiveBankingInfo(BankingInfo reiveBankingInfo) {
         this.reiveBankingInfo = reiveBankingInfo;
     }
+
+
+    @Override
+    public String toString() {
+        return "Claim{" +
+                "id='" + id + '\'' +
+                ", claimDate=" + claimDate +
+                ", InsuredPerson='" + InsuredPerson + '\'' +
+                ", cardNumber='" + cardNumber + '\'' +
+                ", examDate=" + examDate +
+                ", documents=" + documents +
+                ", claimAmount=" + claimAmount +
+                ", status=" + status +
+                ", reiveBankingInfo=" + reiveBankingInfo +
+                '}';
+    }
 }

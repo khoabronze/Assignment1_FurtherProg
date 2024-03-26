@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Admin implements ClaimProcessManager {
     private ArrayList<Claim> claims;
@@ -45,6 +48,7 @@ public class Admin implements ClaimProcessManager {
                     System.out.println("Enter new ID");
                     String newId = scanner.nextLine();
                     claim.setId(newId);
+                    System.out.println("The new ID is" +" " + claim.getId());
 
                 case 2:
                     System.out.println("Claim Date is:" + " " + claim.getClaimDate());
@@ -54,9 +58,62 @@ public class Admin implements ClaimProcessManager {
                     System.out.println("Enter new insured person:");
                     String newinsuredPerson = scanner.nextLine();
                     claim.setInsuredPerson(newinsuredPerson);
+                    System.out.println("The new insured person is " +" " + claim.getInsuredPerson());
                 case 4:
                     System.out.println("The card number is" +" " + claim.getCardNumber());
+                    System.out.println("Enter new card number:");
+                    String newCardNumber = scanner.nextLine();
+                    claim.setCardNumber(newCardNumber);
+                    System.out.println("The new card number is" + " " + claim.getCardNumber());
+                case 5:
+                    System.out.println("The exam date is " + " " + claim.getExamDate());
+                    System.out.println("Enter new exam date:");
+                    String newDateStr = scanner.nextLine();
+
+                    // Parse the user input string into a Date object
+                    Date newDate = null;
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    try {
+                        newDate = dateFormat.parse(newDateStr);
+                    } catch (ParseException e) {
+                        System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
+                        // Handle the error as needed
+                    }
+
+                    // Set the new exam date for the claim
+                    claim.setExamDate(newDate);
+
+                case 6:
+                    System.out.println("The document is" +" " + claim.getDocuments());
+                    System.out.println("Enter new document");
+
+                case 7:
+                    System.out.println("The claim amount is" + " " + claim.getClaimAmount());
+                    System.out.println("Enter new claim amount");
+                    double newClaimAmount = scanner.nextDouble();
+                    claim.setClaimAmount(newClaimAmount);
+                    System.out.println("The new claim amount is" + " " + claim.getClaimAmount());
+                case 8:
+                    System.out.println("The status is" + " " + claim.getStatus());
+                    System.out.println("Choose new status");
+                    int statuschoice = scanner.nextInt();
+                    System.out.println("1: New");
+                    System.out.println("2: Processing");
+                    System.out.println("3: Done");
+                    switch (statuschoice){
+                        case 1:
+                            claim.setStatus(ClaimStatus.New);
+                            System.out.println("Claim status is " +" " + claim.getStatus());
+                        case 2:
+                            claim.setStatus(ClaimStatus.Processing);
+                            System.out.println("Claim status is " +" " + claim.getStatus());
+                        case 3:
+                            claim.setStatus(ClaimStatus.Done);
+                            System.out.println("Claim status is " +" " + claim.getStatus());
+                    }
+                case 9:
                 }
+
         }
 
     }
