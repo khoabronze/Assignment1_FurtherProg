@@ -20,7 +20,12 @@ public class Admin implements ClaimProcessManager {
 
     @Override
     public void add(Claim claim) {
-        claims.add(claim);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter new claim id");
+        String claimID = scanner.nextLine();
+        System.out.println("Enter new Date");
+        String newDate = scanner.nextLine();
+        Claim newclaim = new Claim(claimID, newDate)
     }
 
     @Override
