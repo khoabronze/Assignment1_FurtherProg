@@ -25,7 +25,7 @@ public class Admin implements ClaimProcessManager {
         String claimID = scanner.nextLine();
         System.out.println("Enter new Date");
         String newDate = scanner.nextLine();
-        Claim newclaim = new Claim(claimID, newDate)
+
     }
 
     @Override
