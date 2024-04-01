@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
@@ -45,6 +46,15 @@ public class Claim {
         }
         return sb.toString();
     }
+
+
+    public String FormattedClaimDate() {
+        SimpleDateFormat ClaimdateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return ClaimdateFormat.format(claimDate);
+    }
+
+
+
     public String getId() {
         return id;
     }
