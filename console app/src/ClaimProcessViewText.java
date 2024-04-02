@@ -1,15 +1,10 @@
-import java.util.Date;
 import java.util.HashMap;
-import java.time.LocalDate;
-import java.util.Objects;
-import java.util.Scanner;
-import java.lang.Object;
 import java.util.Date;
+import java.util.Scanner;
 
-public class ClaimProcessViewText extends ClaimProcessView{
+public class ClaimProcessViewText extends ClaimProcessView {
     @Override
     public void display(Claim claim) {
-
         System.out.println("Begin console view:");
         System.out.println("Claim ID: " + claim.getId());
         System.out.println("Claim Date: " + claim.getClaimDate());
@@ -25,17 +20,15 @@ public class ClaimProcessViewText extends ClaimProcessView{
     }
 
     @Override
-    public HashMap<String, Objects> NewClaimForm() {
+    public HashMap<String, String> NewClaimForm() {
         Scanner scanner = DataInput.getDataInput().getScanner();
         HashMap<String, String> data = new HashMap<>();
-        System.out.println("New Student Form: ");
+        System.out.println("New Claim Form: ");
         System.out.println("Enter Claim id: ");
         data.put(CLAIM_ID, scanner.nextLine());
 
         Date currentDate = new Date();
-        data.put(CLAIM_DATE, currentDate.toString());
-
-
+        data.put(CLAIM_DATE, currentDate.toString()); // Convert Date to String
 
         System.out.println("Enter Insured Person: ");
         data.put(INSURED_PERSON, scanner.nextLine());
@@ -44,10 +37,10 @@ public class ClaimProcessViewText extends ClaimProcessView{
         data.put(CARD_NUMBER, scanner.nextLine());
 
         System.out.println("Enter Exam Date: ");
-        data.put(EXAM_DATE, scanner.nextLine());
+        data.put(EXAM_DATE.toString(), scanner.nextLine()); // Convert Date to String
 
         System.out.println("Enter Document: ");
-        data.put(DOCUMENT, scanner.nextLine());
+        data.put(DOCUMENT.toString(), scanner.nextLine()); // Convert ArrayList to String
 
         System.out.println("Enter Claim amount: ");
         data.put(CLAIM_AMOUNT, scanner.nextLine());
@@ -57,30 +50,29 @@ public class ClaimProcessViewText extends ClaimProcessView{
         System.out.println("2: Processing ");
         System.out.println("3: Done");
 
-        int Choice = scanner.nextInt();
-        switch (Choice){
-            case 1{
-                ClaimStatus.New;
-                data.put(CLAIM_STATUS);
-                break;
-            }
-            case 2{
-                ClaimStatus.Processing;
-                data.put(CLAIM_STATUS);
-                break;
-            }
-            case 3{
-                ClaimStatus.Done;
-                data.put(CLAIM_STATUS);
-                break;
-            }
-            else{
-                System.out.println("Invalid choice");
-            }
-        }
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // consume newline
 
+        String claimStatus = ""; // declare variable to store claim status
+        switch (choice) {
+            case 1:
+                claimStatus = ClaimStatus.New.toString();
+                break;
+            case 2:
+                claimStatus = ClaimStatus.Processing.toString();
+                break;
+            case 3:
+                claimStatus = ClaimStatus.Done.toString();
+                break;
+            default:
+                System.out.println("Invalid choice. Defaulting to New.");
+                claimStatus = ClaimStatus.New.toString(); // default to New status
+                break;
+        }
+        data.put(CLAIM_STATUS.toString(), claimStatus);
 
         System.out.println("Enter Banking Info: ");
         data.put(BANKING_INFO, scanner.nextLine());
-        return data;    }
+        return data;
+    }
 }
