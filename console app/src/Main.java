@@ -2,8 +2,8 @@ import java.util.Date;
 import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
-            Claim claim = new Claim();
-            System.out.println(claim.getId());
+        ClaimProcessController controller = new ClaimProcessController(new Claim(), new ClaimProcessViewText());
+        controller.add();
             
 
         }

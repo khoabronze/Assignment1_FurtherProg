@@ -19,7 +19,7 @@ public class Admin implements ClaimProcessManager {
     }
 
     @Override
-    public void add(Claim claim) {
+    public void add() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter new claim id");
         String claimID = scanner.nextLine();

@@ -4,7 +4,7 @@ public abstract interface ClaimProcessManager {
 
 
         // Add a new claim to the system
-        void add(Claim claim);
+        void add();
 
 
         // Update an existing claim in the system

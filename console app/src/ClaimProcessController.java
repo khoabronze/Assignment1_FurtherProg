@@ -17,7 +17,7 @@ public class ClaimProcessController implements ClaimProcessManager {
 
 
     @Override
-    public void add(Claim claim) {
+    public void add() {
         String answer = "Yes";
         Scanner scanner = DataInput.getDataInput().getScanner();
         while (answer.equalsIgnoreCase("Yes")) {
@@ -29,7 +29,7 @@ public class ClaimProcessController implements ClaimProcessManager {
             Date examDate = new Date(Long.parseLong(data.get("EXAM_DATE"))); // Convert String to Date
             ArrayList<String> documentList = new ArrayList<>(Arrays.asList(data.get(String.valueOf(view.DOCUMENT)).split(","))); // Convert String to ArrayList
             double claimAmount = Double.parseDouble(data.get(String.valueOf(view.CLAIM_AMOUNT))); // Convert String to double
-            String status = data.get(view.STATUS);
+            ClaimStatus status = ClaimStatus.valueOf(data.get(view.CLAIM_STATUS)); // Assuming ClaimStatus is an enum
             BankingInfo receiverBankingInfo = new BankingInfo(data.get("RECEIVER_BANKING_INFO_BANK"), data.get("RECEIVER_BANKING_INFO_NAME"), data.get("RECEIVER_BANKING_INFO_NUMBER"));
 
 

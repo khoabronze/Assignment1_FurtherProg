@@ -1,8 +1,10 @@
+import java.util.Date;
 import java.util.HashMap;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Scanner;
 import java.lang.Object;
+import java.util.Date;
 
 public class ClaimProcessViewText extends ClaimProcessView{
     @Override
@@ -30,18 +32,10 @@ public class ClaimProcessViewText extends ClaimProcessView{
         System.out.println("Enter Claim id: ");
         data.put(CLAIM_ID, scanner.nextLine());
 
-        System.out.println("Enter Claim Year: ");
-        int year = Integer.parseInt(scanner.nextLine());
+        Date currentDate = new Date();
+        data.put(CLAIM_DATE, currentDate.toString());
 
-        System.out.println("Enter Claim Month (1-12): ");
-        int month = Integer.parseInt(scanner.nextLine());
 
-        System.out.println("Enter Claim Day: ");
-        int day = Integer.parseInt(scanner.nextLine());
-
-        // Create LocalDate object
-        LocalDate claimDate = LocalDate.of(year, month, day);
-        data.put(CLAIM_DATE, claimDate);
 
         System.out.println("Enter Insured Person: ");
         data.put(INSURED_PERSON, scanner.nextLine());
@@ -58,8 +52,33 @@ public class ClaimProcessViewText extends ClaimProcessView{
         System.out.println("Enter Claim amount: ");
         data.put(CLAIM_AMOUNT, scanner.nextLine());
 
-        System.out.println("Enter Claim Status: ");
-        data.put(CLAIM_STATUS, scanner.nextLine());
+        System.out.println("Select Claim Status: ");
+        System.out.println("1: New ");
+        System.out.println("2: Processing ");
+        System.out.println("3: Done");
+
+        int Choice = scanner.nextInt();
+        switch (Choice){
+            case 1{
+                ClaimStatus.New;
+                data.put(CLAIM_STATUS);
+                break;
+            }
+            case 2{
+                ClaimStatus.Processing;
+                data.put(CLAIM_STATUS);
+                break;
+            }
+            case 3{
+                ClaimStatus.Done;
+                data.put(CLAIM_STATUS);
+                break;
+            }
+            else{
+                System.out.println("Invalid choice");
+            }
+        }
+
 
         System.out.println("Enter Banking Info: ");
         data.put(BANKING_INFO, scanner.nextLine());
