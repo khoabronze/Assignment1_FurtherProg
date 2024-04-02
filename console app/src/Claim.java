@@ -1,11 +1,12 @@
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
 public class Claim {
     private String id;
-    private Date claimDate;
+    private LocalDate claimDate;
     private String InsuredPerson;
     private String cardNumber;
     private Date examDate;
@@ -16,7 +17,7 @@ public class Claim {
 
     public Claim() {
         this.id = generateUniqueId();
-        this.claimDate = new Date();
+        this.claimDate = LocalDate.now();
         InsuredPerson = "Default";
         this.cardNumber = "default";
         this.examDate = new Date();
@@ -25,7 +26,7 @@ public class Claim {
         this.status = null;
         this.reiveBankingInfo = reiveBankingInfo;
     }
-    public Claim(String id, Date claimDate, String insuredPerson, String cardNumber, Date examDate, ArrayList<String> documents, double claimAmount, ClaimStatus status, BankingInfo reiveBankingInfo) {
+    public Claim(String id, LocalDate claimDate, String insuredPerson, String cardNumber, Date examDate, ArrayList<String> documents, double claimAmount, ClaimStatus status, BankingInfo reiveBankingInfo) {
         this.id = id;
         this.claimDate = claimDate;
         InsuredPerson = insuredPerson;
@@ -63,11 +64,12 @@ public class Claim {
         this.id = id;
     }
 
-    public Date getClaimDate() {
+    public LocalDate
+    getClaimDate() {
         return claimDate;
     }
 
-    public void setClaimDate(Date claimDate) {
+    public void setClaimDate(LocalDate claimDate) {
         this.claimDate = claimDate;
     }
 

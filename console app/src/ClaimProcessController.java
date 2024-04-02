@@ -1,8 +1,5 @@
-import javax.print.Doc;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Map;
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.util.*;
 
 public class ClaimProcessController implements ClaimProcessManager {
     Claim claim;
@@ -15,26 +12,27 @@ public class ClaimProcessController implements ClaimProcessManager {
 
     @Override
     public void add(Claim claim) {
-            String answer = "Y";
-            Scanner scanner = DataInput.getDataInput().getScanner();
-            while (answer.equalsIgnoreCase("Y")) {
-                Map<String, String> data = view.NewClaimForm();
-                String ID = data.get(ClaimProcessView.CLAIM_ID);
-                String Date = data.get(ClaimProcessView.CLAIM_DATE);
-                String Insured = data.get(ClaimProcessView.INSURED_PERSON);
-                String Number = data.get(ClaimProcessView.CARD_NUMBER);
-                String Exam = data.get(ClaimProcessView.EXAM_DATE);
-                String Documents = data.get(ClaimProcessView.DOCUMENT);
-                String Amount = data.get(ClaimProcessView.CLAIM_AMOUNT);
-                String Status = data.get(ClaimProcessView.CLAIM_STATUS);
-                String BankInfo = data.get(ClaimProcessView.BANKING_INFO);
+        String answer = "Y";
+        Scanner scanner = DataInput.getDataInput().getScanner();
+        while (answer.equalsIgnoreCase("Y")) {
+            HashMap<String, Object> data = view.NewClaimForm();
+            String ID = (String) data.get(ClaimProcessView.CLAIM_ID);
+            LocalDate Date = (LocalDate) data.get(ClaimProcessView.CLAIM_DATE);
+            String Insured = (String) data.get(ClaimProcessView.INSURED_PERSON);
+            String Number = (String) data.get(ClaimProcessView.CARD_NUMBER);
+            LocalDate Exam = (LocalDate) data.get(ClaimProcessView.EXAM_DATE);
+            String Documents = (String) data.get(ClaimProcessView.DOCUMENT);
+            Double Amount = (Double) data.get(ClaimProcessView.CLAIM_AMOUNT);
+            String Status = (String) data.get(ClaimProcessView.CLAIM_STATUS);
+            String BankInfo = (String) data.get(ClaimProcessView.BANKING_INFO);
 
-                claim = new Claim(ID, Date, Insured, Number, Exam, Documents, Amount, Status, BankInfo);
-                view.display(claim);
+            // Assuming Exam should be of type String in the Claim constructor
+            claim = new Claim(ID, Date, Insured, Number, Exam, Documents, Amount, Status, BankInfo);
+            view.display(claim);
 
-                System.out.println("Continue? ");
-                answer = scanner.nextLine();
-            }
+            System.out.println("Continue? ");
+            answer = scanner.nextLine();
+        }
     }
 
     @Override

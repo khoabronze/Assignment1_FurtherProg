@@ -1,5 +1,6 @@
 import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class ClaimProcessViewText extends ClaimProcessView{
@@ -21,15 +22,25 @@ public class ClaimProcessViewText extends ClaimProcessView{
     }
 
     @Override
-    public Map<String, String> NewClaimForm() {
+    public HashMap<String, Objects> NewClaimForm() {
         Scanner scanner = DataInput.getDataInput().getScanner();
-        Map<String, String> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
         System.out.println("New Student Form: ");
         System.out.println("Enter Claim id: ");
         data.put(CLAIM_ID, scanner.nextLine());
 
-        System.out.println("Enter Claim Date : ");
-        data.put(CLAIM_DATE, scanner.nextLine());
+        System.out.println("Enter Claim Year: ");
+        int year = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Enter Claim Month (1-12): ");
+        int month = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Enter Claim Day: ");
+        int day = Integer.parseInt(scanner.nextLine());
+
+        // Create LocalDate object
+        LocalDate claimDate = LocalDate.of(year, month, day);
+        data.put(CLAIM_DATE, claimDate);
 
         System.out.println("Enter Insured Person: ");
         data.put(INSURED_PERSON, scanner.nextLine());
@@ -51,5 +62,5 @@ public class ClaimProcessViewText extends ClaimProcessView{
 
         System.out.println("Enter Banking Info: ");
         data.put(BANKING_INFO, scanner.nextLine());
-        return data;    }
+            return data;    }
 }
