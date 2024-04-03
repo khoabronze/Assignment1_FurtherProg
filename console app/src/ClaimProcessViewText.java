@@ -26,9 +26,18 @@ public class ClaimProcessViewText extends ClaimProcessView {
         Scanner scanner = DataInput.getDataInput().getScanner();
         HashMap<String, String> data = new HashMap<>();
         System.out.println("New Claim Form: ");
-        System.out.println("Enter Claim id: ");
 
-        data.put(CLAIM_ID, scanner.nextLine());
+
+        System.out.println("Enter Claim id (10 numbers): ");
+        String id;
+        do {
+            id = scanner.nextLine();
+            if (!id.matches("\\d{10}")) {
+                System.out.println("Invalid claim id. Must be 10 numbers.");
+            }
+        } while (!id.matches("\\d{10}"));
+        String ClaimID = "f-" + id;
+        data.put(CLAIM_ID, ClaimID);
 
         data.put("CLAIM_DATE", String.valueOf(CLAIM_DATE.getTime()));
 
@@ -85,8 +94,6 @@ public class ClaimProcessViewText extends ClaimProcessView {
         String name = scanner.nextLine();
         System.out.println("Enter number");
         String number = scanner.nextLine();
-
-        BankingInfo bankingInfo = new BankingInfo(bankname, name, number);
         data.put("RECEIVER_BANKING_INFO_BANK", bankname);
         data.put("RECEIVER_BANKING_INFO_NAME", name);
         data.put("RECEIVER_BANKING_INFO_NUMBER", number);
