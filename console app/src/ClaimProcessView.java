@@ -10,7 +10,7 @@ public abstract class ClaimProcessView {
     public static final ArrayList<String> DOCUMENT = new ArrayList<>(); // Initialize as empty ArrayList
     public static final String CLAIM_AMOUNT = "Claim_Amount";
 
-    public static final ClaimStatus CLAIM_STATUS = ClaimStatus.Processing;
+    public static final String CLAIM_STATUS_KEY = "Claim_Status";
     public static final String BANKING_INFO = "Banking_Info";
 
     public abstract void display(Claim claim);

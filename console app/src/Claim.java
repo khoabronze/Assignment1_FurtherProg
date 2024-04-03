@@ -26,10 +26,10 @@ public class Claim {
     }
     public Claim(String id, Date claimDate, String insuredPerson, String cardNumber, Date examDate, ArrayList<String> documents, double claimAmount, ClaimStatus status, BankingInfo reiveBankingInfo) {
         this.id = id;
-        this.claimDate = claimDate;
+        this.claimDate = new Date();
         InsuredPerson = insuredPerson;
         this.cardNumber = cardNumber;
-        this.examDate = examDate;
+        this.examDate = new Date();
         this.documents = documents;
         this.claimAmount = claimAmount;
         this.status = status;

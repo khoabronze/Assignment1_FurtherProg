@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.Date;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 public class ClaimProcessViewText extends ClaimProcessView {
     @Override
@@ -25,10 +27,12 @@ public class ClaimProcessViewText extends ClaimProcessView {
         HashMap<String, String> data = new HashMap<>();
         System.out.println("New Claim Form: ");
         System.out.println("Enter Claim id: ");
+
         data.put(CLAIM_ID, scanner.nextLine());
 
-        Date currentDate = new Date();
-        data.put(CLAIM_DATE, currentDate.toString()); // Convert Date to String
+        data.put("CLAIM_DATE", String.valueOf(CLAIM_DATE.getTime()));
+
+
 
         System.out.println("Enter Insured Person: ");
         data.put(INSURED_PERSON, scanner.nextLine());
@@ -36,8 +40,10 @@ public class ClaimProcessViewText extends ClaimProcessView {
         System.out.println("Enter Card Number: ");
         data.put(CARD_NUMBER, scanner.nextLine());
 
-        System.out.println("Enter Exam Date: ");
-        data.put(EXAM_DATE.toString(), scanner.nextLine()); // Convert Date to String
+
+
+        data.put("EXAM_DATE", String.valueOf(EXAM_DATE.getTime()));
+
 
         System.out.println("Enter Document: ");
         data.put(DOCUMENT.toString(), scanner.nextLine()); // Convert ArrayList to String
@@ -50,8 +56,9 @@ public class ClaimProcessViewText extends ClaimProcessView {
         System.out.println("2: Processing ");
         System.out.println("3: Done");
 
+
         int choice = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+        scanner.nextLine(); // Consume newline left-over
 
         String claimStatus = ""; // declare variable to store claim status
         switch (choice) {
@@ -69,10 +76,20 @@ public class ClaimProcessViewText extends ClaimProcessView {
                 claimStatus = ClaimStatus.New.toString(); // default to New status
                 break;
         }
-        data.put(CLAIM_STATUS.toString(), claimStatus);
+        data.put(CLAIM_STATUS_KEY, claimStatus);
 
         System.out.println("Enter Banking Info: ");
-        data.put(BANKING_INFO, scanner.nextLine());
+        System.out.println("Enter Bank name: ");
+        String bankname = scanner.nextLine();
+        System.out.println("Enter Name: ");
+        String name = scanner.nextLine();
+        System.out.println("Enter number");
+        String number = scanner.nextLine();
+
+        BankingInfo bankingInfo = new BankingInfo(bankname, name, number);
+        data.put("RECEIVER_BANKING_INFO_BANK", bankname);
+        data.put("RECEIVER_BANKING_INFO_NAME", name);
+        data.put("RECEIVER_BANKING_INFO_NUMBER", number);
         return data;
     }
 }

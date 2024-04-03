@@ -36,4 +36,13 @@ public class BankingInfo {
     public void setNumber(String number) {
         Number = number;
     }
+
+    @Override
+    public String toString() {
+        return "BankingInfo{" +
+                "Bank='" + Bank + '\'' +
+                ", Name='" + Name + '\'' +
+                ", Number='" + Number + '\'' +
+                '}';
+    }
 }

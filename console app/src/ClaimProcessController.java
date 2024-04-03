@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Arrays;
-
+import java.text.SimpleDateFormat;
 public class ClaimProcessController implements ClaimProcessManager {
     Claim claim;
     ClaimProcessView view;
@@ -29,7 +29,7 @@ public class ClaimProcessController implements ClaimProcessManager {
             Date examDate = new Date(Long.parseLong(data.get("EXAM_DATE"))); // Convert String to Date
             ArrayList<String> documentList = new ArrayList<>(Arrays.asList(data.get(String.valueOf(view.DOCUMENT)).split(","))); // Convert String to ArrayList
             double claimAmount = Double.parseDouble(data.get(String.valueOf(view.CLAIM_AMOUNT))); // Convert String to double
-            ClaimStatus status = ClaimStatus.valueOf(data.get(view.CLAIM_STATUS)); // Assuming ClaimStatus is an enum
+            ClaimStatus status = ClaimStatus.valueOf(data.get(view.CLAIM_STATUS_KEY));
             BankingInfo receiverBankingInfo = new BankingInfo(data.get("RECEIVER_BANKING_INFO_BANK"), data.get("RECEIVER_BANKING_INFO_NAME"), data.get("RECEIVER_BANKING_INFO_NUMBER"));
 
 
