@@ -47,7 +47,8 @@ public class ClaimProcessViewText extends ClaimProcessView {
         data.put(INSURED_PERSON, scanner.nextLine());
 
         System.out.println("Enter Card Number: ");
-        data.put(CARD_NUMBER, scanner.nextLine());
+        String cardNumber = scanner.nextLine();
+        data.put(CARD_NUMBER, cardNumber);
 
 
 
@@ -55,7 +56,8 @@ public class ClaimProcessViewText extends ClaimProcessView {
 
 
         System.out.println("Enter Document: ");
-        data.put(DOCUMENT.toString(), scanner.nextLine()); // Convert ArrayList to String
+        String PDFname = ClaimID + "_" + cardNumber + "_" + scanner.nextLine() + ".PDF";
+        data.put(DOCUMENT.toString(), PDFname); // Convert ArrayList to String
 
         System.out.println("Enter Claim amount: ");
         data.put(CLAIM_AMOUNT, scanner.nextLine());
