@@ -8,10 +8,10 @@ import java.text.SimpleDateFormat;
 public class ClaimProcessController implements ClaimProcessManager {
     Claim claim;
     ClaimProcessView view;
-    private HashMap<String, Claim> claimList = new HashMap<>();
+    private ArrayList<Claim> claimList = new ArrayList<>();
 
 
-    public ClaimProcessController(Claim claim, ClaimProcessView view, HashMap<String, Claim> claimList) {
+    public ClaimProcessController(Claim claim, ClaimProcessView view, ArrayList<Claim> claimList) {
         this.claim = claim;
         this.view = view;
         this.claimList = claimList;
@@ -34,11 +34,12 @@ public class ClaimProcessController implements ClaimProcessManager {
             BankingInfo receiverBankingInfo = new BankingInfo(data.get("RECEIVER_BANKING_INFO_BANK"), data.get("RECEIVER_BANKING_INFO_NAME"), data.get("RECEIVER_BANKING_INFO_NUMBER"));
 
             claim = new Claim(id, claimDate, insuredPerson, cardNumber, examDate, documentList, claimAmount, status, receiverBankingInfo);
-            claims.add(claim); // Add the claim to the claims ArrayList
-            view.display(claim);
+            claimList.add(claim); // Add the claim to the ArrayList
+            view.displayAdd(claim); // Display the claim after it's fully created
             System.out.println("Continue? ");
             answer = scanner.nextLine();
         }
+        view.MainMenu();
     }
 
     @Override
@@ -56,8 +57,11 @@ public class ClaimProcessController implements ClaimProcessManager {
         return null;
     }
 
+
     @Override
     public ArrayList<Claim> getAll() {
-            return claims;
-        }
+        System.out.println("Getting all claims...");
+        view.DisplaygetAll(claimList);
+        return new ArrayList<>(claimList);
     }
+}

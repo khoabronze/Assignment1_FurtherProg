@@ -1,12 +1,35 @@
-import java.util.HashMap;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
 public class ClaimProcessViewText extends ClaimProcessView {
+
     @Override
-    public void display(Claim claim) {
+    public void MainMenu( ) {
+        Scanner scanner = DataInput.getDataInput().getScanner();
+        System.out.println("Main Menu: ");
+        System.out.println("1: Add claim");
+        System.out.println("2: Update claim");
+        System.out.println("3: Delete claim");
+        System.out.println("4: Get one claim");
+        System.out.println("5: Get all claims");
+        System.out.println("4: Exit");
+        System.out.println("Enter choice: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        ClaimProcessController controller = new ClaimProcessController(new Claim(), this, new ArrayList<Claim>());        switch (choice) {
+            case 1:
+                controller.add();
+                break;
+            case 5:
+                ArrayList<Claim> allClaims = controller.getAll();
+                DisplaygetAll(allClaims);
+                break;
+        }
+    }
+
+    @Override
+    public void displayAdd(Claim claim) {
         System.out.println("Begin console view:");
         System.out.println("Claim ID: " + claim.getId());
         System.out.println("Claim Date: " + claim.getClaimDate());
@@ -100,5 +123,31 @@ public class ClaimProcessViewText extends ClaimProcessView {
         data.put("RECEIVER_BANKING_INFO_NAME", name);
         data.put("RECEIVER_BANKING_INFO_NUMBER", number);
         return data;
+    }
+
+    @Override
+    public void displayUpdate(Claim claim) {
+        // Implementation goes here
+        // For example, you might print out the updated claim details
+        System.out.println("Updated claim details: ");
+        System.out.println("Claim ID: " + claim.getId());
+        // Add more details as needed
+    }
+
+    @Override
+    public void DisplaygetAll(ArrayList<Claim> claimList) {
+        System.out.println("Number of claims: " + claimList.size());
+        for (Claim claim : claimList) {
+            System.out.println("Claim ID: " + claim.getId());
+            System.out.println("Claim Date: " + claim.getClaimDate());
+            System.out.println("Insured person: " + claim.getInsuredPerson());
+            System.out.println("Card number: " + claim.getCardNumber());
+            System.out.println("Exam Date: " + claim.getExamDate());
+            System.out.println("Documents: " + claim.getDocuments());
+            System.out.println("Claim Amount: " + claim.getClaimAmount());
+            System.out.println("Claim Status: " + claim.getStatus());
+            System.out.println("Banking info: " + claim.getReiveBankingInfo());
+            System.out.println("End console view:");
+        }
     }
 }

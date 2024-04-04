@@ -12,6 +12,12 @@ public abstract class ClaimProcessView {
 
     public static final String CLAIM_STATUS_KEY = "Claim_Status";
     public static final String BANKING_INFO = "Banking_Info";
-    public abstract void display(Claim claim);
+    public abstract void MainMenu();
+    public abstract void displayAdd(Claim claim);
     public abstract HashMap<String, String> NewClaimForm();
+    public abstract void displayUpdate(Claim claim);
+
+    public abstract void DisplaygetAll(ArrayList<Claim> claimList);
+
+
 }
