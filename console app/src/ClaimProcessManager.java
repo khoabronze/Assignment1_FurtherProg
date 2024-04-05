@@ -9,15 +9,15 @@ public abstract interface ClaimProcessManager {
 
 
         // Update an existing claim in the system
-        void update(Claim claim);
+        void update();
 
         // Delete a claim from the system
-        void delete(String claimId);
+        void delete();
 
         // Retrieve a specific claim from the system based on its ID
-        Claim getOne(String claimId);
+        void getOne();
 
         // Retrieve all claims from the system
-        ArrayList<Claim> getAll();
+        HashMap<String, Claim> getAll();
     }
 

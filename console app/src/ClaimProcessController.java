@@ -1,17 +1,18 @@
 import java.time.LocalDate;
-import java.util.Scanner;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Arrays;
+import java.util.*;
 import java.text.SimpleDateFormat;
 public class ClaimProcessController implements ClaimProcessManager {
     Claim claim;
     ClaimProcessView view;
-    private ArrayList<Claim> claimList = new ArrayList<>();
+    private HashMap<String, Claim> claimList = new  HashMap<String, Claim>();
 
+    public ClaimProcessController() {
+        this.claim = claim;
+        this.view = view;
+        this.claimList = claimList;
+    }
 
-    public ClaimProcessController(Claim claim, ClaimProcessView view, ArrayList<Claim> claimList) {
+    public ClaimProcessController(Claim claim, ClaimProcessView view, HashMap<String, Claim> claimList) {
         this.claim = claim;
         this.view = view;
         this.claimList = claimList;
@@ -34,7 +35,7 @@ public class ClaimProcessController implements ClaimProcessManager {
             BankingInfo receiverBankingInfo = new BankingInfo(data.get("RECEIVER_BANKING_INFO_BANK"), data.get("RECEIVER_BANKING_INFO_NAME"), data.get("RECEIVER_BANKING_INFO_NUMBER"));
 
             claim = new Claim(id, claimDate, insuredPerson, cardNumber, examDate, documentList, claimAmount, status, receiverBankingInfo);
-            claimList.add(claim); // Add the claim to the ArrayList
+            claimList.put(id, claim); // Add the claim to the HashMap
             view.displayAdd(claim); // Display the claim after it's fully created
             System.out.println("Continue? ");
             answer = scanner.nextLine();
@@ -43,25 +44,111 @@ public class ClaimProcessController implements ClaimProcessManager {
     }
 
     @Override
-    public void update(Claim claim) {
+    public void update() {
+        Scanner scanner = DataInput.getDataInput().getScanner();
+        HashMap<String, String> data = view.displayGetOneClaimForm();
+        String id = data.get(view.CLAIM_ID);
+        if (claimList.containsKey(id)) {
+            Claim claim = claimList.get(id);
 
+            // Assuming displayUpdateClaimForm() returns a HashMap containing updated claim data
+            HashMap<String, String> updatedData = view.displayUpdateClaimForm();
+
+            // Update fields based on user input
+            if (updatedData.containsKey(view.INSURED_PERSON)) {
+                claim.setInsuredPerson(updatedData.get(view.INSURED_PERSON));
+                view.MainMenu();
+            }
+            if (updatedData.containsKey(view.CARD_NUMBER)) {
+                claim.setCardNumber(updatedData.get(view.CARD_NUMBER));
+                view.MainMenu();
+            }
+            if (updatedData.containsKey("EXAM_DATE")) {
+                // Parse the date string to a Date object
+                Date examDate = new Date(Long.parseLong(updatedData.get("EXAM_DATE")));
+                claim.setExamDate(examDate);
+                view.MainMenu();
+
+            }
+            if (updatedData.containsKey(view.DOCUMENT)) {
+                // Split the document string and convert it to ArrayList
+                ArrayList<String> documentList = new ArrayList<>(Arrays.asList(updatedData.get(view.DOCUMENT).split(",")));
+                claim.setDocuments(documentList);
+                view.MainMenu();
+
+            }
+            if (updatedData.containsKey(view.CLAIM_AMOUNT)) {
+                claim.setClaimAmount(Double.parseDouble(updatedData.get(view.CLAIM_AMOUNT)));
+                view.MainMenu();
+
+            }
+            if (updatedData.containsKey(view.CLAIM_STATUS_KEY)) {
+                try {
+                    ClaimStatus status = ClaimStatus.valueOf(updatedData.get(view.CLAIM_STATUS_KEY));
+                    claim.setStatus(status);
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid Claim Status provided.");
+                }
+                view.MainMenu();
+
+            }
+            if (updatedData.containsKey("RECEIVER_BANKING_INFO_BANK") && updatedData.containsKey("RECEIVER_BANKING_INFO_NAME") && updatedData.containsKey("RECEIVER_BANKING_INFO_NUMBER")) {
+                BankingInfo receiverBankingInfo = new BankingInfo(updatedData.get("RECEIVER_BANKING_INFO_BANK"), updatedData.get("RECEIVER_BANKING_INFO_NAME"), updatedData.get("RECEIVER_BANKING_INFO_NUMBER"));
+                claim.setReiveBankingInfo(receiverBankingInfo);
+                view.MainMenu();
+
+            }
+
+            // Display the updated claim after all fields have been updated
+        } else {
+            System.out.println("Claim with the ID " + id + " not found.");
+        }
+    }
+
+
+
+    @Override
+    public void delete() {
+        Scanner scanner = DataInput.getDataInput().getScanner();
+        HashMap<String, String> data = view.displayDeleteClaimForm();
+        String id = data.get(view.CLAIM_ID);
+
+        if (claimList.containsKey(id)) {
+            claimList.remove(id);
+            System.out.println("Claim with the ID " + id + " has been deleted.");
+        } else {
+            System.out.println("Claim with the ID " + id + " not found.");
+        }
     }
 
     @Override
-    public void delete(String claimId) {
+    public void getOne() {
+        Scanner scanner = DataInput.getDataInput().getScanner();
+        HashMap<String, String> data = view.displayGetOneClaimForm();
+        String id = data.get(view.CLAIM_ID);
 
+        if (claimList.containsKey(id)) {
+            Claim claim = claimList.get(id);
+            view.displayAdd(claim);
+        } else {
+            System.out.println("Claim with the ID " + id + " not found.");
+        }
     }
 
-    @Override
-    public Claim getOne(String claimId) {
-        return null;
-    }
-
 
     @Override
-    public ArrayList<Claim> getAll() {
-        System.out.println("Getting all claims...");
-        view.DisplaygetAll(claimList);
-        return new ArrayList<>(claimList);
+    public HashMap<String, Claim> getAll() {
+        if (claimList.isEmpty()) {
+            System.out.println("No claims available.");
+        } else {
+            System.out.println("All Claims:");
+            System.out.println();
+            Iterator<Claim> iterator = claimList.values().iterator();
+            while (iterator.hasNext()) {
+                Claim claim = iterator.next();
+                view.displayAdd(claim);
+            }
+        }
+        return claimList;
     }
 }

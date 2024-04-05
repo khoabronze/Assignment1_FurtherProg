@@ -15,9 +15,9 @@ public abstract class ClaimProcessView {
     public abstract void MainMenu();
     public abstract void displayAdd(Claim claim);
     public abstract HashMap<String, String> NewClaimForm();
-    public abstract void displayUpdate(Claim claim);
+    public abstract HashMap<String, String> displayUpdateClaimForm();
+    public abstract HashMap<String, String> displayDeleteClaimForm();
 
-    public abstract void DisplaygetAll(ArrayList<Claim> claimList);
 
-
+    public abstract HashMap<String, String> displayGetOneClaimForm();
 }
