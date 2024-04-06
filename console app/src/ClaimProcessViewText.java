@@ -38,6 +38,9 @@ public class ClaimProcessViewText extends ClaimProcessView {
             case 5:
                 HashMap<String, Claim> allClaims = controller.getAll();
                 break;
+                case 6:
+                    System.exit(0);
+                    break;
         }
         MainMenu();
     }

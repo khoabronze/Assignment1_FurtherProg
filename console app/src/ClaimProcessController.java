@@ -37,6 +37,9 @@ public class ClaimProcessController implements ClaimProcessManager {
             claim = new Claim(id, claimDate, insuredPerson, cardNumber, examDate, documentList, claimAmount, status, receiverBankingInfo);
             claimList.put(id, claim); // Add the claim to the HashMap
             view.displayAdd(claim); // Display the claim after it's fully created
+            Filewriter filewriter = new Filewriter();
+            filewriter.writeTripToFile(claim);
+
             System.out.println("Continue? ");
             answer = scanner.nextLine();
         }

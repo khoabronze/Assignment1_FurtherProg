@@ -1,0 +1,10 @@
+Claim ID: f-1234567899
+Claim Date: Sat Apr 06 15:43:04 ICT 2024
+Insured person: khoa
+Card number: 2
+Exam Date: Sat Apr 06 15:43:04 ICT 2024
+Documents: [f-1234567899_2_2.PDF]
+Claim Amount: 3.0
+Claim Status: Done
+Banking info: BankingInfo{Bank='1', Name='1', Number='1'}
+-----------------------------------
