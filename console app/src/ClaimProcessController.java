@@ -68,10 +68,9 @@ public class ClaimProcessController implements ClaimProcessManager {
             }
             if (updatedData.containsKey("EXAM_DATE")) {
                 // Parse the date string to a Date object
-                Date examDate = new Date(Long.parseLong(updatedData.get("EXAM_DATE")));
+                Date examDate = new Date();
                 claim.setExamDate(examDate);
                 view.MainMenu();
-
             }
             if (updatedData.containsKey(view.DOCUMENT)) {
                 // Split the document string and convert it to ArrayList

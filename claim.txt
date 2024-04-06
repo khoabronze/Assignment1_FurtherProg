@@ -1,20 +1,20 @@
 Claim ID: f-1234567899
-Claim Date: Sat Apr 06 20:19:29 ICT 2024
-Insured person: khoa
-Card number: 21
-Exam Date: Sat Apr 06 20:19:29 ICT 2024
-Documents: [f-1234567899_21_hkao.PDF]
+Claim Date: Sun Apr 07 01:16:34 ICT 2024
+Insured person: khoa1
+Card number: 2312
+Exam Date: Sun Apr 07 01:16:34 ICT 2024
+Documents: [f-1234567899_2312_1.PDF]
 Claim Amount: 1.0
 Claim Status: New
-Banking info: khoa – bnank – 29
+Banking info: 1 – 1 – 1
 -----------------------------------
-Claim ID: f-1234566666
-Claim Date: Sat Apr 06 21:21:51 ICT 2024
-Insured person: Khgo
-Card number: 2
-Exam Date: Sat Apr 06 21:21:51 ICT 2024
-Documents: [f-1234566666_2_3.PDF]
-Claim Amount: 1.0
+Claim ID: f-1555555555
+Claim Date: Sun Apr 07 01:23:53 ICT 2024
+Insured person: khoa
+Card number: wodak
+Exam Date: Sun Apr 07 01:23:53 ICT 2024
+Documents: [f-1555555555_wodak_da.PDF]
+Claim Amount: 2.0
 Claim Status: Done
-Banking info: 1 – Gk – 2
+Banking info: 1 – 1 – 1
 -----------------------------------

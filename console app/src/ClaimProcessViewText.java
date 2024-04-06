@@ -147,6 +147,9 @@ public class ClaimProcessViewText extends ClaimProcessView {
     public HashMap<String, String> displayUpdateClaimForm() {
         Scanner scanner = DataInput.getDataInput().getScanner();
         HashMap<String, String> data = new HashMap<>();
+        System.out.println("Enter the ID of the Claim that you want to update:");
+        data.put(CLAIM_ID, scanner.nextLine());
+        ClaimProcessView view = new ClaimProcessViewText();
         System.out.println("Enter the information you want to update: ");
         System.out.println("1: Insured Person");
         System.out.println("2: Card Number");
@@ -218,6 +221,7 @@ public class ClaimProcessViewText extends ClaimProcessView {
                 data.put("RECEIVER_BANKING_INFO", bankingInfoFormatted);
                 break;
             case 8:
+                view.MainMenu();
                 break;
             default:
                 System.out.println("Invalid choice.");
