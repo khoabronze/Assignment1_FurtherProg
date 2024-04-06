@@ -4,9 +4,9 @@ public class InsuranceCard {
     private String cardNumber;
     private String CardHolder;
     private String policyOwner;
-    private Date expirationDate;
+    private String expirationDate;
 
-    public InsuranceCard(String cardNumber, String cardHolder, String policyOwner, Date expirationDate) {
+    public InsuranceCard(String cardNumber, String cardHolder, String policyOwner, String expirationDate) {
         this.cardNumber = cardNumber;
         CardHolder = cardHolder;
         this.policyOwner = policyOwner;
@@ -37,11 +37,11 @@ public class InsuranceCard {
         this.policyOwner = policyOwner;
     }
 
-    public Date getExpirationDate() {
+    public String getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
 }

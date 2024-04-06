@@ -2,11 +2,13 @@ public class BankingInfo {
     private String Bank;
     private String Name;
     private String Number;
+
     public BankingInfo() {
         this.Bank = "Default";
         this.Name = "Default";
         this.Number = "Default";
     }
+
     public BankingInfo(String bank, String name, String number) {
         this.Bank = bank;
         this.Name = name;
@@ -39,10 +41,6 @@ public class BankingInfo {
 
     @Override
     public String toString() {
-        return "BankingInfo{" +
-                "Bank='" + Bank + '\'' +
-                ", Name='" + Name + '\'' +
-                ", Number='" + Number + '\'' +
-                '}';
+        return String.format("%s – %s – %s", Bank, Name, Number);
     }
 }

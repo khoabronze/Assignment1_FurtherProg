@@ -213,9 +213,9 @@ public class ClaimProcessViewText extends ClaimProcessView {
                 String name = scanner.nextLine();
                 System.out.println("Enter number: ");
                 String number = scanner.nextLine();
-                data.put("RECEIVER_BANKING_INFO_BANK", bankname);
-                data.put("RECEIVER_BANKING_INFO_NAME", name);
-                data.put("RECEIVER_BANKING_INFO_NUMBER", number);
+
+                String bankingInfoFormatted = String.format("BankingInfo{Bank='%s', Name='%s', Number='%s'}", bankname, name, number);
+                data.put("RECEIVER_BANKING_INFO", bankingInfoFormatted);
                 break;
             case 8:
                 break;
