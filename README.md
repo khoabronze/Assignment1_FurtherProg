@@ -2,7 +2,8 @@
 
 This is a console-based application for processing insurance claims. It allows users to manage insurance cards and claims.
 
-
+Name: Dong Dang Khoa
+ID: s3986281
 
 
 
