@@ -1,13 +1,30 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Map;
+/**
+ * @author <Dong Dang Khoa- s3986281>
+ */
 
+
+import java.io.*;
+import java.util.HashMap;
 public class Filewriter {
 
-    Claim claim;
+    public void rewriteFileWithClaims(HashMap<String, Claim> claimList, String filePath) {
+        // Clear the file
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter(filePath);
+            writer.print("");
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
-    public void writeTripToFile(Claim claim) {
+        // Write the claims to the file
+        for (Claim claim : claimList.values()) {
+            writeClaimToFile(claim);
+        }
+    }
+
+    public void writeClaimToFile(Claim claim) {
         String filePath = "claim.txt";
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true));
@@ -37,4 +54,42 @@ public class Filewriter {
             e.printStackTrace();
         }
     }
-}
+            public void rewriteFileWithInsuranceCards(HashMap<String, InsuranceCard> insuranceCardList, String filePath) {
+                // Clear the file
+                PrintWriter writer = null;
+                try {
+                    writer = new PrintWriter(filePath);
+                    writer.print("");
+                    writer.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                // Write the insurance cards to the file
+                for (InsuranceCard insuranceCard : insuranceCardList.values()) {
+                    writeInsuranceCardToFile(insuranceCard);
+                }
+            }
+
+            public void writeInsuranceCardToFile(InsuranceCard insuranceCard) {
+                String filePath = "insuranceCard.txt";
+                try {
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true));
+                    // Write insurance card information to the file
+                    writer.write("Card Number: " + insuranceCard.getCardNumber());
+                    writer.newLine();
+                    writer.write("Card Holder: " + insuranceCard.getCardHolder());
+                    writer.newLine();
+                    writer.write("Policy Owner: " + insuranceCard.getPolicyOwner());
+                    writer.newLine();
+                    writer.write("Expiration Date: " + insuranceCard.getExpirationDate());
+                    writer.newLine();
+                    writer.write("-----------------------------------");
+                    writer.newLine();
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+

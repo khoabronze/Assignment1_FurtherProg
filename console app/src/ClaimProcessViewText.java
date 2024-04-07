@@ -1,56 +1,90 @@
 import java.util.*;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+/**
+ * @author <Dong Dang Khoa- s3986281>
+ */
+
 
 // ClaimProcessViewText.java
 public class ClaimProcessViewText extends ClaimProcessView {
     private ClaimProcessController controller;
+    private InsuranceCardController icController;
 
-    public void setController(ClaimProcessController controller) {
+
+    public void setController(ClaimProcessController controller, InsuranceCardController icController) {
         this.controller = controller;
+        this.icController = icController;
     }
 
     @Override
-    public void MainMenu() {
-        Scanner scanner = DataInput.getDataInput().getScanner();
-        System.out.println("Main Menu: ");
-        System.out.println("1: Add claim");
-        System.out.println("2: Update claim");
-        System.out.println("3: Delete claim");
-        System.out.println("4: Get one claim");
-        System.out.println("5: Get all claims");
-        System.out.println("6: Exit");
-        System.out.println("Enter choice: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        switch (choice) {
+    public void MainMenu(ClaimProcessController controller, InsuranceCardController icController) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Insurance Claim Processing System");
+        System.out.println("Choose an option: ");
+        System.out.println("'1' to add a Claim");
+        System.out.println("'2' to update a Claim");
+        System.out.println("'3' to delete a Claim");
+        System.out.println("'4' to get one Claim");
+        System.out.println("'5' to get all Claim");
+        System.out.println("'6' to add an Insurance Card");
+        System.out.println("'7' to update an Insurance Card");
+        System.out.println("'8' to delete an Insurance Card");
+        System.out.println("'9' to get one Insurance Card");
+        System.out.println("'10' to get all Insurance Card");
+        System.out.println("'11' to exit the system");
+        int menuChoice = scanner.nextInt();
+
+        switch (menuChoice) {
             case 1:
                 controller.add();
-                break;
+                MainMenu(controller, icController);
+                return;
             case 2:
                 controller.update();
-                break;
+                MainMenu(controller, icController);
+                return;
             case 3:
                 controller.delete();
+                MainMenu(controller, icController);
+                return;
             case 4:
                 controller.getOne();
-                break;
+                MainMenu(controller, icController);
+                return;
             case 5:
-                HashMap<String, Claim> allClaims = controller.getAll();
+                controller.getAll();
+                MainMenu(controller, icController);
+                return;
+            case 6:
+                icController.add();
+                MainMenu(controller, icController);
+                return;
+            case 7:
+                icController.update();
+                MainMenu(controller, icController);
+                return;
+            case 8:
+                icController.delete();
+                MainMenu(controller, icController);
+                return;
+            case 9:
+                icController.getOne();
+                MainMenu(controller, icController);
+                return;
+            case 10:
+                icController.getAll();
+                MainMenu(controller, icController);
+                return;
+            case 11:
                 break;
-                case 6:
-                    System.exit(0);
-                    break;
+            default:
+                System.out.println("Invalid choice. Please enter a valid option");
         }
-        MainMenu();
     }
-
-    // Rest of the class...
-
 
     @Override
     public void displayAdd(Claim claim) {
-        System.out.println("Begin console view:");
         System.out.println("Claim ID: " + claim.getId());
         System.out.println("Claim Date: " + claim.getClaimDate());
         System.out.println("Insured person: " + claim.getInsuredPerson());
@@ -60,7 +94,6 @@ public class ClaimProcessViewText extends ClaimProcessView {
         System.out.println("Claim Amount: " + claim.getClaimAmount());
         System.out.println("Claim Status: " + claim.getStatus());
         System.out.println("Banking info: " + claim.getReiveBankingInfo());
-        System.out.println("End console view:");
         System.out.println();
     }
 
@@ -221,7 +254,7 @@ public class ClaimProcessViewText extends ClaimProcessView {
                 data.put("RECEIVER_BANKING_INFO", bankingInfoFormatted);
                 break;
             case 8:
-                view.MainMenu();
+                view.MainMenu(controller, icController);
                 break;
             default:
                 System.out.println("Invalid choice.");

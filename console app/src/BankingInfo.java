@@ -1,3 +1,7 @@
+/**
+ * @author <Dong Dang Khoa- s3986281>
+ */
+
 public class BankingInfo {
     private String Bank;
     private String Name;

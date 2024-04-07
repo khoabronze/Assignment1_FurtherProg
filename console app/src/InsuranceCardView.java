@@ -6,13 +6,13 @@ public abstract class InsuranceCardView {
     public static final String POLICY_OWNER = "POLICY_OWNER";
     public static final String EXPIRATION_DATE = "EXPIRATION_DATE";
 
-    public abstract void display(InsuranceCard ic);
+    public abstract void display(InsuranceCard insuranceCard);
 
-    public abstract HashMap<String, String> displayNewInsuranceCardForm();
+    public abstract HashMap<String, String> displayNewInsuranceForm();
 
-    public abstract HashMap<String, String> displayGetOneInsuranceCardForm();
+    public abstract HashMap<String, String> displayGetOneInsuranceForm();
 
-    public abstract  HashMap<String, String> displayDeleteInsuranceCardForm();
+    public abstract  HashMap<String, String> displayDeleteForm();
 
     public abstract HashMap<String, String> displayUpdateInsuranceCardForm();
 }

@@ -1,3 +1,7 @@
+/**
+ * @author <Dong Dang Khoa- s3986281>
+ */
+
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -12,7 +16,7 @@ public class InsuranceCardViewText extends InsuranceCardView{
     }
 
     @Override
-    public HashMap<String, String> displayNewInsuranceCardForm() {
+    public HashMap<String, String> displayNewInsuranceForm() {
         Scanner scanner = DataInput.getDataInput().getScanner();
         HashMap<String, String> data = new HashMap<>();
         System.out.println("New Insurance Card Form");
@@ -43,7 +47,7 @@ public class InsuranceCardViewText extends InsuranceCardView{
     }
 
     @Override
-    public HashMap<String, String> displayDeleteInsuranceCardForm() {
+    public HashMap<String, String> displayDeleteForm() {
         Scanner scanner = DataInput.getDataInput().getScanner();
         HashMap<String, String> data = new HashMap<>();
         System.out.println("Enter the insurance card's card holder name that you want to delete: ");
@@ -52,7 +56,7 @@ public class InsuranceCardViewText extends InsuranceCardView{
     }
 
     @Override
-    public HashMap<String, String> displayGetOneInsuranceCardForm() {
+    public HashMap<String, String> displayGetOneInsuranceForm() {
         Scanner scanner = DataInput.getDataInput().getScanner();
         HashMap<String, String> data = new HashMap<>();
         System.out.println("Enter the insurance card's card holder name that you want to check: ");

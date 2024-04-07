@@ -1,11 +1,17 @@
-import java.util.Date;
-
+/**
+ * @author <Dong Dang Khoa- s3986281>
+ */
 public class InsuranceCard {
     private String cardNumber;
     private String CardHolder;
     private String policyOwner;
     private String expirationDate;
-
+    public InsuranceCard() {
+        this.cardNumber = "default";
+        CardHolder = "default";
+        this.policyOwner = "default";
+        this.expirationDate = "default";
+    }
     public InsuranceCard(String cardNumber, String cardHolder, String policyOwner, String expirationDate) {
         this.cardNumber = cardNumber;
         CardHolder = cardHolder;
@@ -43,5 +49,15 @@ public class InsuranceCard {
 
     public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
+    }
+
+    @Override
+    public String toString() {
+        return "InsuranceCard{" +
+                "cardNumber='" + cardNumber + '\'' +
+                ", CardHolder='" + CardHolder + '\'' +
+                ", policyOwner='" + policyOwner + '\'' +
+                ", expirationDate='" + expirationDate + '\'' +
+                '}';
     }
 }

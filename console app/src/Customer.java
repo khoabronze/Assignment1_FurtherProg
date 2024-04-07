@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Random;
+/**
+ * @author <Dong Dang Khoa- s3986281>
+ */
 
 public abstract class Customer  {
     private String id;

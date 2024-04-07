@@ -1,3 +1,7 @@
+/**
+ * @author <Dong Dang Khoa- s3986281>
+ */
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -7,19 +11,23 @@ public class InsuranceCardController {
     HashMap<String, InsuranceCard> insuranceCardList;
     InsuranceCard insuranceCard;
     InsuranceCardView InsuranceView;
-
-    // Constructor
-    public InsuranceCardController(InsuranceCard insuranceCard, InsuranceCardView InsuranceView) {
+    public InsuranceCardController() {
         this.insuranceCard = insuranceCard;
         this.InsuranceView = InsuranceView;
-        this.insuranceCardList = new HashMap<>();
+        this.insuranceCardList = insuranceCardList;
+    }
+    // Constructor
+    public InsuranceCardController(InsuranceCard insuranceCard, InsuranceCardView InsuranceView, HashMap<String, InsuranceCard> insuranceCardList) {
+        this.insuranceCard = insuranceCard;
+        this.InsuranceView = InsuranceView;
+        this.insuranceCardList = insuranceCardList;
     }
 
     public void add() {
         String answer = "Yes";
         Scanner scanner = DataInput.getDataInput().getScanner();
         while (answer.equalsIgnoreCase("Yes")) {
-            HashMap<String, String> data = InsuranceView.displayNewInsuranceCardForm();
+            HashMap<String, String> data = InsuranceView.displayNewInsuranceForm();
             String cardNumber = data.get(InsuranceCardView.CARD_NUMBER);
             String cardHolder = data.get(InsuranceCardView.CARD_HOLDER);
             String policyOwner = data.get(InsuranceCardView.POLICY_OWNER);
@@ -30,6 +38,8 @@ public class InsuranceCardController {
             insuranceCardList.put(cardHolder, insuranceCard);  // Add the Insurance Card to the Insurance Card list
 
             InsuranceView.display(insuranceCard);
+            Filewriter filewriter = new Filewriter();
+            filewriter.writeInsuranceCardToFile(insuranceCard);
 
             System.out.println("Continue? (Yes/No) ");
             answer = scanner.nextLine();
@@ -52,7 +62,7 @@ public class InsuranceCardController {
 
     public void getOne() {
         Scanner scanner = DataInput.getDataInput().getScanner();
-        HashMap<String, String> data = InsuranceView.displayGetOneInsuranceCardForm();
+        HashMap<String, String> data = InsuranceView.displayGetOneInsuranceForm();
         String cardHolder = data.get(InsuranceCardView.CARD_HOLDER);
 
         if (insuranceCardList.containsKey(cardHolder)) {
@@ -65,16 +75,17 @@ public class InsuranceCardController {
 
     public void delete() {
         Scanner scanner = DataInput.getDataInput().getScanner();
-        HashMap<String, String> data = InsuranceView.displayDeleteInsuranceCardForm();
+        HashMap<String, String> data = InsuranceView.displayDeleteForm();
         String cardHolder = data.get(InsuranceCardView.CARD_HOLDER);
 
         if(insuranceCardList.containsKey(cardHolder)) {
-            InsuranceCard insuranceCard = insuranceCardList.get(cardHolder);
-            System.out.println("Claim with the ID " + cardHolder + " has been removed.");
-            System.out.println();
             insuranceCardList.remove(cardHolder);
+            System.out.println("Insurance Card with the Card Holder " + cardHolder + " has been removed.");
+            Filewriter filewriter = new Filewriter();
+            String filePath = "insuranceCard.txt"; // replace with your file path
+            filewriter.rewriteFileWithInsuranceCards(insuranceCardList, filePath);
         } else {
-            System.out.println("Claim with the ID " + cardHolder + " not found.");
+            System.out.println("Insurance Card with the Card Holder " + cardHolder + " not found.");
         }
     }
 
@@ -94,8 +105,13 @@ public class InsuranceCardController {
             insuranceCard.setPolicyOwner(policyOwner);
             insuranceCard.setExpirationDate(expirationDate);
 
-            // Update insurance card in the insurace card list
+            // Update insurance card in the insurance card list
             insuranceCardList.put(cardHolder, insuranceCard);
+
+            // Write the updated insurance card list to a file
+            Filewriter filewriter = new Filewriter();
+            String filePath = "insuranceCard.txt"; // replace with your file path
+            filewriter.rewriteFileWithInsuranceCards(insuranceCardList, filePath);
 
             InsuranceView.display(insuranceCard);
         }

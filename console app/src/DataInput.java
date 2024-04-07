@@ -1,3 +1,8 @@
+/**
+ * @author <Dong Dang Khoa- s3986281>
+ */
+
+
 import java.util.Scanner;
 public class DataInput {
     private static DataInput input;

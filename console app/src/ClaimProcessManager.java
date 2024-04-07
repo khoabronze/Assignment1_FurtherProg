@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+/**
+ * @author <Dong Dang Khoa- s3986281>
+ */
 
 public abstract interface ClaimProcessManager {
 

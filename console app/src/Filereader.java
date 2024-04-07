@@ -1,8 +1,14 @@
+/**
+ * @author <Dong Dang Khoa- s3986281>
+ */
+
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 
 public class Filereader {
 
@@ -89,33 +95,63 @@ public class Filereader {
 
         return new Claim(id, claimDate, insuredPerson, cardNumber, examDate, documents, claimAmount, status, bankingInfo);
     }
-    public void updateFromFile(String filePath, String claimId, Claim newClaimData) {
-        HashMap<String, Claim> claims = readClaimsFromFile(filePath);
+    public HashMap<String, InsuranceCard> readInsuranceCardsFromFile(String filePath) {
+        HashMap<String, InsuranceCard> insuranceCards = new HashMap<>();
+        File file = new File(filePath);
 
-        // Update the claim if it exists in the map
-        if (claims.containsKey(claimId)) {
-            claims.put(claimId, newClaimData);
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                InsuranceCard insuranceCard = readInsuranceCard(scanner);
+                if (insuranceCard != null) {
+                    insuranceCards.put(insuranceCard.getCardHolder(), insuranceCard);
+                }
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred: File not found.");
+            e.printStackTrace();
         }
 
-        // Write the updated claims back to the file
-        Filewriter filewriter = new Filewriter();
-        for (Claim claim : claims.values()) {
-            filewriter.writeTripToFile(claim);
-        }
+        return insuranceCards;
     }
 
-    public void deleteFromFile(String filePath, String claimId) {
-        HashMap<String, Claim> claims = readClaimsFromFile(filePath);
+    private InsuranceCard readInsuranceCard(Scanner scanner) {
+        String cardHolder = "";
+        String cardNumber = "";
+        String policyOwner = "";
+        String expirationDate = "";
 
-        // Remove the claim if it exists in the map
-        if (claims.containsKey(claimId)) {
-            claims.remove(claimId);
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            if (line.equals("-----------------------------------")) {
+                break;
+            }
+
+            String[] parts = line.split(": ");
+            if (parts.length < 2) {
+                continue;
+            }
+            String key = parts[0];
+            String value = parts[1];
+
+            switch (key) {
+                case "Card Holder":
+                    cardHolder = value;
+                    break;
+                case "Card Number":
+                    cardNumber = value;
+                    break;
+                case "Policy Owner":
+                    policyOwner = value;
+                    break;
+                case "Expiration Date":
+                    expirationDate = value;
+                    break;
+            }
         }
 
-        // Write the remaining claims back to the file
-        Filewriter filewriter = new Filewriter();
-        for (Claim claim : claims.values()) {
-            filewriter.writeTripToFile(claim);
-        }
+        return new InsuranceCard(cardNumber, cardHolder, policyOwner, expirationDate);
     }
+
 }

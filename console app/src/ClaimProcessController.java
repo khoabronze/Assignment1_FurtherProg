@@ -1,21 +1,31 @@
 import java.time.LocalDate;
 import java.util.*;
 import java.text.SimpleDateFormat;
+/**
+ * @author <Dong Dang Khoa- s3986281>
+ */
+
 public class ClaimProcessController implements ClaimProcessManager {
     Claim claim;
     ClaimProcessView view;
+    private Filewriter filewriter;
+    private String filePath = "claim.txt"; // replace with your file path
     private HashMap<String, Claim> claimList = new  HashMap<String, Claim>();
+    InsuranceCardController insuranceCardController = new InsuranceCardController();
+
 
     public ClaimProcessController() {
         this.claim = claim;
         this.view = view;
         this.claimList = claimList;
+        this.filewriter = new Filewriter();
     }
 
-    public ClaimProcessController(Claim claim, ClaimProcessView view, HashMap<String, Claim> claimList) {
+    public ClaimProcessController(Claim claim, ClaimProcessView view, HashMap<String, Claim> claimList, Filewriter filewriter) {
         this.claim = claim;
         this.view = view;
         this.claimList = claimList;
+        this.filewriter = filewriter;
     }
 
     @Override
@@ -25,6 +35,13 @@ public class ClaimProcessController implements ClaimProcessManager {
         while (answer.equalsIgnoreCase("Yes")) {
             HashMap<String, String> data = view.NewClaimForm();
             String id = data.get(view.CLAIM_ID);
+
+            // Check if a claim with the same ID already exists
+            if (claimList.containsKey(id)) {
+                System.out.println("A claim with the ID " + id + " already exists. Please use a different ID.");
+                continue;
+            }
+
             Date claimDate = new Date(Long.parseLong(data.get("CLAIM_DATE"))); // Convert String to Date
             String insuredPerson = data.get(view.INSURED_PERSON);
             String cardNumber = data.get(view.CARD_NUMBER);
@@ -38,12 +55,12 @@ public class ClaimProcessController implements ClaimProcessManager {
             claimList.put(id, claim); // Add the claim to the HashMap
             view.displayAdd(claim); // Display the claim after it's fully created
             Filewriter filewriter = new Filewriter();
-            filewriter.writeTripToFile(claim);
+            filewriter.writeClaimToFile(claim);
 
             System.out.println("Continue? ");
             answer = scanner.nextLine();
         }
-        view.MainMenu();
+        view.MainMenu(this, insuranceCardController);
     }
 
     @Override
@@ -60,44 +77,55 @@ public class ClaimProcessController implements ClaimProcessManager {
             // Update fields based on user input
             if (updatedData.containsKey(view.INSURED_PERSON)) {
                 claim.setInsuredPerson(updatedData.get(view.INSURED_PERSON));
-                view.MainMenu();
+                filewriter.rewriteFileWithClaims(claimList, filePath);
+                view.MainMenu(this, insuranceCardController);
+
             }
             if (updatedData.containsKey(view.CARD_NUMBER)) {
                 claim.setCardNumber(updatedData.get(view.CARD_NUMBER));
-                view.MainMenu();
+                filewriter.rewriteFileWithClaims(claimList, filePath);
+                view.MainMenu(this, insuranceCardController);
             }
             if (updatedData.containsKey("EXAM_DATE")) {
                 // Parse the date string to a Date object
                 Date examDate = new Date();
                 claim.setExamDate(examDate);
-                view.MainMenu();
+                filewriter.rewriteFileWithClaims(claimList, filePath);
+                view.MainMenu(this, insuranceCardController);
             }
             if (updatedData.containsKey(view.DOCUMENT)) {
                 // Split the document string and convert it to ArrayList
                 ArrayList<String> documentList = new ArrayList<>(Arrays.asList(updatedData.get(view.DOCUMENT).split(",")));
                 claim.setDocuments(documentList);
-                view.MainMenu();
+                filewriter.rewriteFileWithClaims(claimList, filePath);
+                view.MainMenu(this, insuranceCardController);
+
 
             }
             if (updatedData.containsKey(view.CLAIM_AMOUNT)) {
                 claim.setClaimAmount(Double.parseDouble(updatedData.get(view.CLAIM_AMOUNT)));
-                view.MainMenu();
+                filewriter.rewriteFileWithClaims(claimList, filePath);
+                view.MainMenu(this, insuranceCardController);
 
             }
             if (updatedData.containsKey(view.CLAIM_STATUS_KEY)) {
                 try {
                     ClaimStatus status = ClaimStatus.valueOf(updatedData.get(view.CLAIM_STATUS_KEY));
                     claim.setStatus(status);
+                    filewriter.rewriteFileWithClaims(claimList, filePath);
                 } catch (IllegalArgumentException e) {
                     System.out.println("Invalid Claim Status provided.");
                 }
-                view.MainMenu();
+                view.MainMenu(this, insuranceCardController);
+
 
             }
             if (updatedData.containsKey("RECEIVER_BANKING_INFO_BANK") && updatedData.containsKey("RECEIVER_BANKING_INFO_NAME") && updatedData.containsKey("RECEIVER_BANKING_INFO_NUMBER")) {
                 BankingInfo receiverBankingInfo = new BankingInfo(updatedData.get("RECEIVER_BANKING_INFO_BANK"), updatedData.get("RECEIVER_BANKING_INFO_NAME"), updatedData.get("RECEIVER_BANKING_INFO_NUMBER"));
                 claim.setReiveBankingInfo(receiverBankingInfo);
-                view.MainMenu();
+                filewriter.rewriteFileWithClaims(claimList, filePath);
+                view.MainMenu(this, insuranceCardController);
+
 
             }
 
@@ -118,6 +146,7 @@ public class ClaimProcessController implements ClaimProcessManager {
         if (claimList.containsKey(id)) {
             claimList.remove(id);
             System.out.println("Claim with the ID " + id + " has been deleted.");
+            filewriter.rewriteFileWithClaims(claimList, filePath);
         } else {
             System.out.println("Claim with the ID " + id + " not found.");
         }

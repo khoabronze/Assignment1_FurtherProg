@@ -1,20 +1,150 @@
 Claim ID: f-1234567899
-Claim Date: Sun Apr 07 01:16:34 ICT 2024
-Insured person: khoa1
-Card number: 2312
-Exam Date: Sun Apr 07 01:16:34 ICT 2024
-Documents: [f-1234567899_2312_1.PDF]
-Claim Amount: 1.0
-Claim Status: New
-Banking info: 1 – 1 – 1
------------------------------------
-Claim ID: f-1555555555
-Claim Date: Sun Apr 07 01:23:53 ICT 2024
+Claim Date: Sun Apr 07 19:36:12 ICT 2024
 Insured person: khoa
-Card number: wodak
-Exam Date: Sun Apr 07 01:23:53 ICT 2024
-Documents: [f-1555555555_wodak_da.PDF]
+Card number: 1
+Exam Date: Sun Apr 07 19:36:12 ICT 2024
+Documents: [f-1234567899_1_new1.PDF]
+Claim Amount: 1.0
+Claim Status: Done
+Banking info: Viet – Minh – 1
+-----------------------------------
+Claim ID: f-1234567888
+Claim Date: Sun Apr 07 19:36:43 ICT 2024
+Insured person: khoa2
+Card number: 2
+Exam Date: Sun Apr 07 19:36:43 ICT 2024
+Documents: [f-1234567888_2_new2.PDF]
 Claim Amount: 2.0
 Claim Status: Done
-Banking info: 1 – 1 – 1
+Banking info: Jaw – Jam – 2
+-----------------------------------
+Claim ID: f-1234567777
+Claim Date: Sun Apr 07 19:37:31 ICT 2024
+Insured person: Khoa3
+Card number: 3
+Exam Date: Sun Apr 07 19:37:31 ICT 2024
+Documents: [f-1234567777_3_new3.PDF]
+Claim Amount: 3.0
+Claim Status: New
+Banking info: KCM – john – 3
+-----------------------------------
+Claim ID: f-1234566666
+Claim Date: Sun Apr 07 19:37:56 ICT 2024
+Insured person: Khoa4
+Card number: 123123
+Exam Date: Sun Apr 07 19:37:56 ICT 2024
+Documents: [f-1234566666_123123_New4.PDF]
+Claim Amount: 4.0
+Claim Status: Done
+Banking info: ew – dkawo – 32141
+-----------------------------------
+Claim ID: f-1234521313
+Claim Date: Sun Apr 07 19:38:37 ICT 2024
+Insured person: Mom
+Card number: 321
+Exam Date: Sun Apr 07 19:38:37 ICT 2024
+Documents: [f-1234521313_321_New5.PDF]
+Claim Amount: 92.0
+Claim Status: Processing
+Banking info: LWpeea – ewa – 23
+-----------------------------------
+Claim ID: f-1233333333
+Claim Date: Sun Apr 07 19:39:28 ICT 2024
+Insured person: chocopie
+Card number: 32
+Exam Date: Sun Apr 07 19:39:28 ICT 2024
+Documents: [f-1233333333_32_new6.PDF]
+Claim Amount: 3232.0
+Claim Status: Processing
+Banking info: bank  – siuuuuuuu – 232
+-----------------------------------
+Claim ID: f-6666666666
+Claim Date: Sun Apr 07 19:39:58 ICT 2024
+Insured person: Messi
+Card number: 8
+Exam Date: Sun Apr 07 19:39:58 ICT 2024
+Documents: [f-6666666666_8_New6.PDF]
+Claim Amount: 321.0
+Claim Status: Done
+Banking info: Mdaw – kdowa – 312
+-----------------------------------
+Claim ID: f-9421038292
+Claim Date: Sun Apr 07 19:40:33 ICT 2024
+Insured person: kowda
+Card number: 329
+Exam Date: Sun Apr 07 19:40:33 ICT 2024
+Documents: [f-9421038292_329_New7.PDF]
+Claim Amount: 232.0
+Claim Status: Processing
+Banking info: Kodaw – koala – 3213
+-----------------------------------
+Claim ID: f-2222222222
+Claim Date: Sun Apr 07 19:40:57 ICT 2024
+Insured person: koda
+Card number: 23214
+Exam Date: Sun Apr 07 19:40:57 ICT 2024
+Documents: [f-2222222222_23214_kwada.PDF]
+Claim Amount: 515.0
+Claim Status: Processing
+Banking info: kodwa – ldas – sdcdsa
+-----------------------------------
+Claim ID: f-7777777777
+Claim Date: Sun Apr 07 19:41:43 ICT 2024
+Insured person: jidaw
+Card number: 296596
+Exam Date: Sun Apr 07 19:41:43 ICT 2024
+Documents: [f-7777777777_296596_newos.PDF]
+Claim Amount: 96459.0
+Claim Status: New
+Banking info: kofcfa – koda – 231000
+-----------------------------------
+Claim ID: f-3999999999
+Claim Date: Sun Apr 07 19:42:59 ICT 2024
+Insured person: ko
+Card number: 23
+Exam Date: Sun Apr 07 19:42:59 ICT 2024
+Documents: [f-3999999999_23_kodda.PDF]
+Claim Amount: 3214.0
+Claim Status: Processing
+Banking info: ko – mndaw – 3
+-----------------------------------
+Claim ID: f-4444444444
+Claim Date: Sun Apr 07 19:48:11 ICT 2024
+Insured person: mda
+Card number: 3213
+Exam Date: Sun Apr 07 19:48:11 ICT 2024
+Documents: [f-4444444444_3213_koglp.PDF]
+Claim Amount: 32156.0
+Claim Status: Processing
+Banking info: JEwokdao – koda – 566
+-----------------------------------
+Claim ID: f-9876543211
+Claim Date: Sun Apr 07 19:48:50 ICT 2024
+Insured person: kodam
+Card number: kodaw
+Exam Date: Sun Apr 07 19:48:50 ICT 2024
+Documents: [f-9876543211_kodaw_dwkao.PDF]
+Claim Amount: 3125.0
+Claim Status: Processing
+Banking info: Kmdaw – koda – 2325
+-----------------------------------
+Claim ID: f-1111155555
+Claim Date: Sun Apr 07 19:49:27 ICT 2024
+Insured person: koda
+Card number: 786
+Exam Date: Sun Apr 07 19:49:27 ICT 2024
+Documents: [f-1111155555_786_kokog.PDF]
+Claim Amount: 3231.0
+Claim Status: Processing
+Banking info: kdoaw – mhf – 56
+-----------------------------------
+Claim ID: f-9292929292
+Claim Date: Sun Apr 07 19:50:31 ICT 2024
+Insured person: jdiwa
+Card number: 3123
+Exam Date: Sun Apr 07 19:50:31 ICT 2024
+Documents: [f-9292929292_3123_koewa.PDF]
+Claim Amount: 22.0
+Claim Status: New
+Banking info: kdoaw – gm – 244
 -----------------------------------
